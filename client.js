@@ -1,23 +1,6 @@
-var imageScaleFactor = 0.5;
-var outputStride = 16;
-var flipHorizontal = false;
-
-var imageElement = document.getElementById('cat');
-
-posenet.load().then(function(net){
-  return net.estimateSinglePose(imageElement, imageScaleFactor, flipHorizontal, outputStride)
-}).then(function(pose){
-  // fetch('localhost',{method:POST})
-  console.log(pose);
-
-
-  test=document.getElementById('test')
-  test.innerHTML=JSON.stringify(pose);
-})
-
 var first;
 var current_pose;
-var previous_pose;
+
 var dictionary_exercise;
 var mapper = {"nose":0,
               "leftEye":1,
@@ -37,9 +20,6 @@ var mapper = {"nose":0,
               "leftAnkle":15,
               "rightAnkle":16
              }
-
-
-
 
 function asliMaal (pose, exercise){
     current_pose = pose;
@@ -71,7 +51,7 @@ function asliMaal (pose, exercise){
                     count++;
             }
             else{
-                console.log("You are not doing this right")
+                console.log("You are not doing this right");
             }
         }
 
@@ -79,13 +59,15 @@ function asliMaal (pose, exercise){
             var threshold_change_x = exercise["nonKeypoints"][i]["x"];
             var threshold_change_y = exercise["nonKeypoints"][i]["y"];
             if(threshold_change_x >= 1 || threshold_change_y >= 1){
-                console.log("Please Start again or stand still")
+                console.log("Please Start again or stand still");
+                return;
             }
         }
 
         if(count == len_parameter){
             console.log("Rep done");
             first = current_pose;
+            return;
         }
 
         else{

@@ -1,2 +1,4 @@
 /posenet/node_modules
-/posenet/demos
+/posenet/demos/node_modules
+/posenet/demos/.cache
+/posenet/demos/.yalc

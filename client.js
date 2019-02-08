@@ -76,5 +76,4 @@ function asliMaal (pose, exercise){
 
 
     }
-
 }

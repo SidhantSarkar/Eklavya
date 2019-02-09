@@ -24,6 +24,398 @@ const videoWidth = 600;
 const videoHeight = 500;
 const stats = new Stats();
 
+// DETECT CORRECT POSTURE CODE
+
+var first=null;
+var current_pose;
+
+var dictionary_exercise={"leftBicepCurl":{
+    "keypoints":[
+       {
+           "position":{
+            "y":1.643798828125,
+            "x":3.930267333984375
+         },
+          "part":"leftShoulder",
+          "score":0.6475105285644531
+       },
+       {
+          "position":{
+             "y":7.259033203125,
+             "x":0.528228759765625
+          },
+          "part":"leftElbow",
+          "score":0.9196733236312866
+       },
+       {
+          "position":{
+             "y":171.65548706054688,
+             "x":23.766448974609375
+          },
+          "part":"leftWrist",
+          "score":0.7181068062782288
+       }
+    ],
+  "nonKeypoints":[
+    {
+      "position":{
+         "y":4.9232940673828125,
+         "x":2.3838958740234375
+      },
+      "part":"nose",
+      "score":0.9885231256484985
+   },
+   {
+      "position":{
+         "y":3.2984085083007812,
+         "x":0.9009552001953125
+      },
+      "part":"leftEye",
+      "score":0.9641891717910767
+   },
+   {
+      "position":{
+         "y":6.085788726806641,
+         "x":3.1581573486328125
+      },
+      "part":"rightEye",
+      "score":0.42074042558670044
+   },
+   {
+      "position":{
+         "y":1.3904228210449219,
+         "x":1.564910888671875
+      },
+      "part":"leftEar",
+      "score":0.975070595741272
+   },
+   {
+      "position":{
+         "y":0.4381103515625,
+         "x":0.69158935546875
+      },
+      "part":"rightEar",
+      "score":0.0389944463968277
+   },
+      {
+         "position":{
+            "y":4.306732177734375,
+            "x":0.6163330078125
+         },
+         "part":"rightShoulder",
+         "score":0.5469438433647156
+      },
+      {
+         "position":{
+            "y":153.63037109375,
+            "x":228.32159423828125
+         },
+         "part":"rightElbow",
+         "score":0.25836053490638733
+      },
+      {
+         "position":{
+            "y":226.4029083251953,
+            "x":300.0487823486328
+         },
+         "part":"rightWrist",
+         "score":0.6676919460296631
+      },
+      {
+         "position":{
+            "y":2.00286865234375,
+            "x":2.19110107421875
+         },
+         "part":"leftHip",
+         "score":0.720788836479187
+      },
+      {
+         "position":{
+            "y":3.127288818359375,
+            "x":31.20745849609375
+         },
+         "part":"rightHip",
+         "score":0.740676999092102
+      },
+      {
+         "position":{
+            "y":4.687744140625,
+            "x":7.0390625
+         },
+         "part":"leftKnee",
+         "score":0.4901758134365082
+      },
+      {
+         "position":{
+            "y":5.490081787109375,
+            "x":12.263519287109375
+         },
+         "part":"rightKnee",
+         "score":0.5357720255851746
+      },
+      {
+         "position":{
+            "y":65.50869750976562,
+            "x":274.5025329589844
+         },
+         "part":"leftAnkle",
+         "score":0.20094335079193115
+      },
+      {
+         "position":{
+            "y":65.75234985351562,
+            "x":275.61224365234375
+         },
+         "part":"rightAnkle",
+         "score":0.2153695523738861
+      }
+  ],
+   "score":0.5911489015116411
+},
+"squat": {
+    "keypoints":[
+     {
+        "position":{
+           "y":67.3824352403505,
+           "x":0.20961502565284348
+        },
+        "part":"nose",
+        "score":0.9976366758346558
+     },
+     {
+        "position":{
+           "y":70.44173030086999,
+           "x":0.08300812550776247
+        },
+        "part":"leftEye",
+        "score":0.9938685894012451
+     },
+     {
+        "position":{
+           "y":70.38356098010125,
+           "x":0.3358842525648007
+        },
+        "part":"rightEye",
+        "score":0.9921466708183289
+     },
+     {
+        "position":{
+           "y":65.80319468403896,
+           "x":0.31327815094147854
+        },
+        "part":"leftEar",
+        "score":0.5727534890174866
+     },
+     {
+        "position":{
+           "y":65.50867163527165,
+           "x":0.6343584441735075
+        },
+        "part":"rightEar",
+        "score":0.8362635374069214
+     },
+     {
+        "position":{
+           "y":51.98647985360984,
+           "x":1.4282069448524517
+        },
+        "part":"leftShoulder",
+        "score":0.9777547717094421
+     },
+     {
+        "position":{
+           "y":51.00035716148814,
+           "x":0.1540432468892539
+        },
+        "part":"rightShoulder",
+        "score":0.9231982827186584
+     },
+     {
+        "position":{
+           "y":48.201119643966685,
+           "x":0.25845667281945095
+        },
+        "part":"leftElbow",
+        "score":0.893851637840271
+     },
+     {
+        "position":{
+           "y":51.940029823294964,
+           "x":1.3160722626707404
+        },
+        "part":"rightElbow",
+        "score":0.7963579893112183
+     },
+     {
+        "position":{
+           "y":58.8990803800219,
+           "x":3.0621276538242603
+        },
+        "part":"leftWrist",
+        "score":0.8453335762023926
+     },
+     {
+        "position":{
+           "y":60.63550324713919,
+           "x":0.6630044236975656
+        },
+        "part":"rightWrist",
+        "score":0.545620322227478
+     },
+     {
+        "position":{
+           "y":26.976186638038957,
+           "x":1.6616839694184957
+        },
+        "part":"leftHip",
+        "score":0.8066504597663879
+     },
+     {
+        "position":{
+           "y":26.824804901615714,
+           "x":0.9788568769739339
+        },
+        "part":"rightHip",
+        "score":0.8861343860626221
+     },
+     {
+        "position":{
+           "y":3.6289375232743293,
+           "x":6.491027870931297
+        },
+        "part":"leftKnee",
+        "score":0.9791066646575928
+     },
+     {
+        "position":{
+           "y":3.885076409892267,
+           "x":15.870061209650164
+        },
+        "part":"rightKnee",
+        "score":0.961054265499115
+     },
+  ],
+  "nonKeypoints":[
+      {
+         "position":{
+            "y":0.3497318549874139,
+            "x":1.1172291684635414
+         },
+         "part":"leftAnkle",
+         "score":0.8044183254241943
+      },
+      {
+         "position":{
+            "y":0.025096124602460065,
+            "x":0.6624222065597116
+         },
+         "part":"rightAnkle",
+         "score":0.8691182732582092
+      }
+  ]
+}
+}
+
+var mapper = {"nose":0,
+              "leftEye":1,
+              "rightEye":2,
+              "leftEar":3,
+              "rightEar":4,
+              "leftShoulder":5,
+              "rightShoulder":6,
+              "leftElbow":7,
+              "rightElbow":8,
+              "leftWrist":9,
+              "rightWrist":10,
+              "leftHip":11,
+              "rightHip":12,
+              "leftKnee":13,
+              "rightKnee":14,
+              "leftAnkle":15,
+              "rightAnkle":16
+             }
+
+function asliMaal (pose, exercise){
+    current_pose = JSON.parse(JSON.stringify(pose));
+    if(first==null){
+        first = (pose);
+        console.log("Start flexing");
+        return;
+    }
+    else{
+        var threshold = current_pose;
+        for (var i=0; i<threshold["keypoints"].length; i++){
+            var change_x = threshold["keypoints"][i]["position"]["x"]-first["keypoints"][i]["position"]["x"];
+            var change_y = threshold["keypoints"][i]["position"]["y"]-first["keypoints"][i]["position"]["y"];
+            change_x = (change_x < 0) ? change_x * -1 : change_x;
+
+            // threshold["keypoints"][i]["position"]["x"]=(change_x*100)/first["keypoints"][i]["position"]["x"];
+            threshold["keypoints"][i]["position"]["x"]=(change_x);
+
+
+            change_y = (change_y < 0) ? change_y * -1 : change_y;
+            // console.log('Math.sign(change_y)',Math.sign(change_y));
+            // threshold["keypoints"][i]["position"]["y"]=(change_y*100)/first["keypoints"][i]["position"]["y"];
+            threshold["keypoints"][i]["position"]["y"]=(change_y);
+            if(threshold["keypoints"][i]["part"]=="leftShoulder"){
+                // console.log('first["keypoints"][i]["position"]["x"]: ' + first["keypoints"][i]["position"]["x"]);
+                // console.log('first["keypoints"][i]["position"]["y"]: ' + first["keypoints"][i]["position"]["y"]);
+                // console.log("change_x " + change_x);
+                // console.log("change_y " + change_y);
+            }
+        }
+
+        var len_parameter = exercise["keypoints"].length;
+        var count = 0;
+
+        for (var i=0; i<len_parameter; i++){
+            var map = exercise["keypoints"][i]["part"];
+            var current_change_x = threshold["keypoints"][mapper[map]]["position"]["x"];
+            var current_change_y = threshold["keypoints"][mapper[map]]["position"]["y"];
+            var threshold_change_x = exercise["keypoints"][i]["position"]["x"];
+            var threshold_change_y = exercise["keypoints"][i]["position"]["y"];
+            if(exercise["keypoints"][i]["part"] == "leftShoulder"){
+                // console.log(threshold_change_x);
+                // console.log(threshold_change_y);
+            }
+            if( current_change_x <= threshold_change_x + 10 && current_change_y <= threshold_change_y + 10 ){
+                if (Math.abs(current_change_y - threshold_change_y) <= 10){
+                    count++;
+                    console.log(count);
+                }
+                console.log('ALL GOOD');
+            }
+            else{
+                console.log("You are not doing this right");
+            }
+        }
+
+        // for (var i=0; i<exercise["nonKeypoints"].length; i++){
+        //     var threshold_change_x = exercise["nonKeypoints"][i]["position"]["x"];
+        //     var threshold_change_y = exercise["nonKeypoints"][i]["position"]["y"];
+        //     var current_change_x = threshold["keypoints"][mapper[map]]["position"]["x"];
+        //     var current_change_y = threshold["keypoints"][mapper[map]]["position"]["y"];
+        //     if( current_change_x > threshold_change_x + 10 && current_change_y > threshold_change_y + 10 ){
+        //         console.log("Please Restart");
+        //
+        //         first = null;
+        //         return;
+        //     }
+        // }
+
+        if(count  == len_parameter){
+            console.log("Rep done");
+            first = current_pose;
+
+            return;
+        }
+
+        else{
+            // console.log("Go the distance");
+        }
+    }
+}
+
 function isAndroid() {
   return /Android/i.test(navigator.userAgent);
 }
@@ -196,6 +588,7 @@ function setupFPS() {
  * Feeds an image to posenet to estimate poses - this is where the magic
  * happens. This function loops with a requestAnimationFrame method.
  */
+ var ctr=0;
 function detectPoseInRealTime(video, net) {
   const canvas = document.getElementById('output');
   const ctx = canvas.getContext('2d');
@@ -228,13 +621,14 @@ function detectPoseInRealTime(video, net) {
     let poses = [];
     let minPoseConfidence;
     let minPartConfidence;
+    var pose;
     switch (guiState.algorithm) {
       case 'single-pose':
-        const pose = await guiState.net.estimateSinglePose(
+        pose = await guiState.net.estimateSinglePose(
             video, imageScaleFactor, flipHorizontal, outputStride);
         poses.push(pose);
-        
-        console.log(pose);
+
+        // console.log(pose);
         minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
         minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
         break;
@@ -263,20 +657,28 @@ function detectPoseInRealTime(video, net) {
     // For each pose (i.e. person) detected in an image, loop through the poses
     // and draw the resulting skeleton and keypoints if over certain confidence
     // scores
+
     poses.forEach(({score, keypoints}) => {
       if (score >= minPoseConfidence) {
         if (guiState.output.showPoints) {
-          drawKeypoints(keypoints, minPartConfidence, ctx);
+            drawKeypoints(keypoints, minPartConfidence, ctx);
         }
-        if (guiState.output.showSkeleton) {
-          drawSkeleton(keypoints, minPartConfidence, ctx);
+        if (guiState.output.showSkeleton && ctr <= 20) {
+            ctr++;
+            console.log(ctr);
+          drawSkeleton(keypoints, minPartConfidence, ctx,ctr);
+        }
+
+        else if (guiState.output.showSkeleton) {
+            // console.log(pose);
+            asliMaal(pose,dictionary_exercise["leftBicepCurl"]);
+          drawSkeleton(keypoints, minPartConfidence, ctx,ctr);
         }
         if (guiState.output.showBoundingBox) {
           drawBoundingBox(keypoints, ctx);
         }
       }
     });
-
     // End monitoring code for frames per second
     stats.end();
 
@@ -314,96 +716,10 @@ export async function bindPage() {
   detectPoseInRealTime(video, net);
 
   document.querySelector('.main').setAttribute('hidden',true);
-  
+
 }
 
 navigator.getUserMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 // kick off the demo
 bindPage();
-
-
-
-
-
-// DETECT CORRECT POSTURE CODE
-
-var first;
-var current_pose;
-
-var dictionary_exercise;
-var mapper = {"nose":0,
-              "leftEye":1,
-              "rightEye":2,
-              "leftEar":3,
-              "rightEar":4,
-              "leftShoulder":5,
-              "rightShoulder":6,
-              "leftElbow":7,
-              "rightElbow":8,
-              "leftWrist":9,
-              "rightWrist":10,
-              "leftHip":11,
-              "rightHip":12,
-              "leftKnee":13,
-              "rightKnee":14,
-              "leftAnkle":15,
-              "rightAnkle":16
-             }
-
-function asliMaal (pose, exercise){
-    current_pose = pose;
-    if(first){
-        first = current_pose;
-        console.log("Start flexing");
-        return;
-    }
-    else{
-        var threshold = current_pose;
-        for (var i=0; i<len(threshold["keypoints"]); i++){
-            var change_x = threshold["keypoints"][i]["position"]["x"]-first["keypoints"][i]["position"]["x"];
-            var change_y = threshold["keypoints"][i]["position"]["y"]-first["keypoints"][i]["position"]["y"];
-            threshold["keypoints"][i]["position"]["x"]=((Math.sign(change_x))*change_x*100)/first["keypoints"][i]["position"]["x"];
-            threshold["keypoints"][i]["position"]["y"]=((Math.sign(change_y))*change_y*100)/first["keypoints"][i]["position"]["y"];
-        }
-
-        var len_parameter = len(exercise["keypoints"]);
-        var count = 0;
-
-        for (var i=0; i<len_parameter; i++){
-            var map = exercise[i]
-            var current_change_x = threshold["keypoints"][mapper[map]]["position"]["x"];
-            var current_change_y = threshold["keypoints"][mapper[map]]["position"]["y"];
-            var threshold_change_x = exercise["keypoints"][i]["x"];
-            var threshold_change_y = exercise["keypoints"][i]["y"];
-            if( current_change_x <= threshold_change_x + 2 && current_change_y <= threshold_change_y + 2 ){
-                if (Math.abs(current_change_x - threshold_change_x) <= 2) && (Math.abs(current_change_y - threshold_change_y) <= 2)
-                    count++;
-            }
-            else{
-                console.log("You are not doing this right");
-            }
-        }
-
-        for (var i=0; i<len(exercise["nonKeypoints"]); i++){
-            var threshold_change_x = exercise["nonKeypoints"][i]["x"];
-            var threshold_change_y = exercise["nonKeypoints"][i]["y"];
-            if(threshold_change_x >= 1 || threshold_change_y >= 1){
-                console.log("Please Start again or stand still");
-                return;
-            }
-        }
-
-        if(count == len_parameter){
-            console.log("Rep done");
-            first = current_pose;
-            return;
-        }
-
-        else{
-            console.log("Go the distance");
-        }
-
-
-    }
-}

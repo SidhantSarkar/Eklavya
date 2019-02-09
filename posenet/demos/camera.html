@@ -2,8 +2,20 @@
 <html>
 
 <head>
-    <title>PoseNet - Camera Feed Demo</title>
+    <title>Eklavya</title>
+    <link href="https://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
     <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
     .footer {
         position: fixed;
         left: 0;
@@ -24,10 +36,23 @@
       }
     }
     </style>
+    <link href="cover.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
+<body style="background: #333;">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto" style="width: 100vh;">
+      <div class="inner">
+        <h3 class="masthead-brand" style="font-weight: ;font-family: 'Encode Sans Expanded', sans-serif;">E K L A V Y A</h3>
+        <nav class="nav nav-masthead justify-content-center">
+          <a class="nav-link" href="/home.html">Home</a>
+          <a class="nav-link" href="#">Learn</a>
+          <a class="nav-link active" href="/camera.html">Train</a>
+        </nav>
+      </div>
+    </header>
+<div style="padding:20px;"></div>
     <div id="info" style='display:none'>
     </div>
     <div id="loading">
@@ -35,6 +60,7 @@
     </div>
 
     <div id='main' style='display:none'>
+
         <video id="video" playsinline style=" -moz-transform: scaleX(-1);
         -o-transform: scaleX(-1);
         -webkit-transform: scaleX(-1);
@@ -45,7 +71,12 @@
         <!-- <video id='video' width="320" height="240" autoplay loop>
           <source src="walk.mp4" type="video/mp4" />
         </video> -->
-        <canvas id="output" />
+        <canvas id="output" style="
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 800px;
+" />
     </div>
     <!-- <div class="footer">
         <div class="footer-text">
@@ -56,7 +87,7 @@
             </p>
         </div>
     </div> -->
-    
+</div>
     <script src="camera.js"></script>
 </body>
 

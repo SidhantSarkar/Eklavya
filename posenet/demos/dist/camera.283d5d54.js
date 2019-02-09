@@ -1480,7 +1480,16 @@ module.exports = require('../modules/_core').Promise;
 
 },{"../modules/es6.object.to-string":"node_modules/core-js/library/modules/es6.object.to-string.js","../modules/es6.string.iterator":"node_modules/core-js/library/modules/es6.string.iterator.js","../modules/web.dom.iterable":"node_modules/core-js/library/modules/web.dom.iterable.js","../modules/es6.promise":"node_modules/core-js/library/modules/es6.promise.js","../modules/es7.promise.finally":"node_modules/core-js/library/modules/es7.promise.finally.js","../modules/es7.promise.try":"node_modules/core-js/library/modules/es7.promise.try.js","../modules/_core":"node_modules/core-js/library/modules/_core.js"}],"node_modules/babel-runtime/core-js/promise.js":[function(require,module,exports) {
 module.exports = { "default": require("core-js/library/fn/promise"), __esModule: true };
-},{"core-js/library/fn/promise":"node_modules/core-js/library/fn/promise.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
+},{"core-js/library/fn/promise":"node_modules/core-js/library/fn/promise.js"}],"node_modules/core-js/library/fn/json/stringify.js":[function(require,module,exports) {
+var core = require('../../modules/_core');
+var $JSON = core.JSON || (core.JSON = { stringify: JSON.stringify });
+module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
+  return $JSON.stringify.apply($JSON, arguments);
+};
+
+},{"../../modules/_core":"node_modules/core-js/library/modules/_core.js"}],"node_modules/babel-runtime/core-js/json/stringify.js":[function(require,module,exports) {
+module.exports = { "default": require("core-js/library/fn/json/stringify"), __esModule: true };
+},{"core-js/library/fn/json/stringify":"node_modules/core-js/library/fn/json/stringify.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -4160,10 +4169,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 
-},{"process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/internal/streams/stream-browser.js":[function(require,module,exports) {
-module.exports = require('events').EventEmitter;
+},{"process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/internal/streams/stream.js":[function(require,module,exports) {
+module.exports = require('stream');
 
-},{"events":"node_modules/events/events.js"}],"node_modules/core-util-is/lib/util.js":[function(require,module,exports) {
+},{"stream":"node_modules/stream-browserify/index.js"}],"node_modules/core-util-is/lib/util.js":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5190,7 +5199,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-},{"process-nextick-args":"node_modules/process-nextick-args/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util-deprecate":"node_modules/util-deprecate/browser.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_duplex.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util-deprecate":"node_modules/util-deprecate/browser.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream.js","safe-buffer":"node_modules/safe-buffer/index.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_duplex.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6643,7 +6652,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-},{"process-nextick-args":"node_modules/process-nextick-args/index.js","isarray":"node_modules/isarray/index.js","events":"node_modules/events/events.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util":"node_modules/core-js/library/modules/es6.object.to-string.js","./internal/streams/BufferList":"node_modules/readable-stream/lib/internal/streams/BufferList.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","string_decoder/":"node_modules/string_decoder/lib/string_decoder.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_transform.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js","isarray":"node_modules/isarray/index.js","events":"node_modules/events/events.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream.js","safe-buffer":"node_modules/safe-buffer/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util":"node_modules/core-js/library/modules/es6.object.to-string.js","./internal/streams/BufferList":"node_modules/readable-stream/lib/internal/streams/BufferList.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","string_decoder/":"node_modules/string_decoder/lib/string_decoder.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_transform.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8748,21 +8757,8 @@ if (process.browser) {
 }
 
 module.exports = defaultEncoding;
-},{"process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/lib/sync-browser.js":[function(require,module,exports) {
+},{"process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/lib/sync.js":[function(require,module,exports) {
 
-var md5 = require('create-hash/md5');
-
-var rmd160 = require('ripemd160');
-
-var sha = require('sha.js');
-
-var checkParameters = require('./precondition');
-
-var defaultEncoding = require('./default-encoding');
-
-var Buffer = require('safe-buffer').Buffer;
-
-var ZEROS = Buffer.alloc(128);
 var sizes = {
   md5: 16,
   sha1: 20,
@@ -8774,58 +8770,19 @@ var sizes = {
   ripemd160: 20
 };
 
-function Hmac(alg, key, saltLen) {
-  var hash = getDigest(alg);
-  var blocksize = alg === 'sha512' || alg === 'sha384' ? 128 : 64;
+var createHmac = require('create-hmac');
 
-  if (key.length > blocksize) {
-    key = hash(key);
-  } else if (key.length < blocksize) {
-    key = Buffer.concat([key, ZEROS], blocksize);
-  }
+var checkParameters = require('../lib/precondition');
 
-  var ipad = Buffer.allocUnsafe(blocksize + sizes[alg]);
-  var opad = Buffer.allocUnsafe(blocksize + sizes[alg]);
+var defaultEncoding = require('../lib/default-encoding');
 
-  for (var i = 0; i < blocksize; i++) {
-    ipad[i] = key[i] ^ 0x36;
-    opad[i] = key[i] ^ 0x5C;
-  }
-
-  var ipad1 = Buffer.allocUnsafe(blocksize + saltLen + 4);
-  ipad.copy(ipad1, 0, 0, blocksize);
-  this.ipad1 = ipad1;
-  this.ipad2 = ipad;
-  this.opad = opad;
-  this.alg = alg;
-  this.blocksize = blocksize;
-  this.hash = hash;
-  this.size = sizes[alg];
-}
-
-Hmac.prototype.run = function (data, ipad) {
-  data.copy(ipad, this.blocksize);
-  var h = this.hash(ipad);
-  h.copy(this.opad, this.blocksize);
-  return this.hash(this.opad);
-};
-
-function getDigest(alg) {
-  function shaFunc(data) {
-    return sha(alg).update(data).digest();
-  }
-
-  if (alg === 'rmd160' || alg === 'ripemd160') return rmd160;
-  if (alg === 'md5') return md5;
-  return shaFunc;
-}
+var Buffer = require('safe-buffer').Buffer;
 
 function pbkdf2(password, salt, iterations, keylen, digest) {
   checkParameters(password, salt, iterations, keylen);
   if (!Buffer.isBuffer(password)) password = Buffer.from(password, defaultEncoding);
   if (!Buffer.isBuffer(salt)) salt = Buffer.from(salt, defaultEncoding);
   digest = digest || 'sha1';
-  var hmac = new Hmac(digest, password, salt.length);
   var DK = Buffer.allocUnsafe(keylen);
   var block1 = Buffer.allocUnsafe(salt.length + 4);
   salt.copy(block1, 0, 0, salt.length);
@@ -8835,11 +8792,11 @@ function pbkdf2(password, salt, iterations, keylen, digest) {
 
   for (var i = 1; i <= l; i++) {
     block1.writeUInt32BE(i, salt.length);
-    var T = hmac.run(block1, hmac.ipad1);
+    var T = createHmac(digest, password).update(block1).digest();
     var U = T;
 
     for (var j = 1; j < iterations; j++) {
-      U = hmac.run(U, hmac.ipad2);
+      U = createHmac(digest, password).update(U).digest();
 
       for (var k = 0; k < hLen; k++) T[k] ^= U[k];
     }
@@ -8852,7 +8809,7 @@ function pbkdf2(password, salt, iterations, keylen, digest) {
 }
 
 module.exports = pbkdf2;
-},{"create-hash/md5":"node_modules/create-hash/md5.js","ripemd160":"node_modules/ripemd160/index.js","sha.js":"node_modules/sha.js/index.js","./precondition":"node_modules/pbkdf2/lib/precondition.js","./default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","safe-buffer":"node_modules/safe-buffer/index.js"}],"node_modules/pbkdf2/lib/async.js":[function(require,module,exports) {
+},{"create-hmac":"node_modules/create-hmac/browser.js","../lib/precondition":"node_modules/pbkdf2/lib/precondition.js","../lib/default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","safe-buffer":"node_modules/safe-buffer/index.js"}],"node_modules/pbkdf2/lib/async.js":[function(require,module,exports) {
 
 var global = arguments[3];
 var process = require("process");
@@ -8963,10 +8920,10 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
     return sync(password, salt, iterations, keylen, digest);
   }), callback);
 };
-},{"./precondition":"node_modules/pbkdf2/lib/precondition.js","./default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","./sync":"node_modules/pbkdf2/lib/sync-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/browser.js":[function(require,module,exports) {
+},{"./precondition":"node_modules/pbkdf2/lib/precondition.js","./default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","./sync":"node_modules/pbkdf2/lib/sync.js","safe-buffer":"node_modules/safe-buffer/index.js","process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/browser.js":[function(require,module,exports) {
 exports.pbkdf2 = require('./lib/async');
 exports.pbkdf2Sync = require('./lib/sync');
-},{"./lib/async":"node_modules/pbkdf2/lib/async.js","./lib/sync":"node_modules/pbkdf2/lib/sync-browser.js"}],"node_modules/des.js/lib/des/utils.js":[function(require,module,exports) {
+},{"./lib/async":"node_modules/pbkdf2/lib/async.js","./lib/sync":"node_modules/pbkdf2/lib/sync.js"}],"node_modules/des.js/lib/des/utils.js":[function(require,module,exports) {
 'use strict';
 
 exports.readUInt32BE = function readUInt32BE(bytes, off) {
@@ -53808,9 +53765,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * limitations under the License.
  * =============================================================================
  */
-const color = 'aqua';
+var color = 'aqua';
 const boundingBoxColor = 'red';
-const lineWidth = 2;
+const lineWidth = 10;
 
 function toTuple({
   y,
@@ -53843,8 +53800,15 @@ function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
  */
 
 
-function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+function drawSkeleton(keypoints, minConfidence, ctx, ctr, scale = 1) {
   const adjacentKeyPoints = posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+
+  if (ctr <= 20) {
+    color = 'red'; // console.log("red");
+  } else {
+    color = 'aqua'; // console.log('aqua');
+  }
+
   adjacentKeyPoints.forEach(keypoints => {
     drawSegment(toTuple(keypoints[0].position), toTuple(keypoints[1].position), color, scale, ctx);
   });
@@ -53923,7 +53887,7 @@ function renderImageToCanvas(image, size, canvas) {
 
 function drawHeatMapValues(heatMapValues, outputStride, canvas) {
   const ctx = canvas.getContext('2d');
-  const radius = 5;
+  const radius = 50;
   const scaledValues = heatMapValues.mul(tf.scalar(outputStride, 'int32'));
   drawPoints(ctx, scaledValues, radius, color);
 }
@@ -53942,8 +53906,8 @@ function drawPoints(ctx, points, radius, color) {
 
     if (pointX !== 0 && pointY !== 0) {
       ctx.beginPath();
-      ctx.arc(pointX, pointY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = color;
+      ctx.arc(pointX, pointY, 300, 0, 2 * Math.PI);
+      ctx.fillStyle = "#FF0000";
       ctx.fill();
     }
   }
@@ -53978,6 +53942,8 @@ exports.bindPage = bindPage;
 
 var _promise = _interopRequireDefault(require("babel-runtime/core-js/promise"));
 
+var _stringify = _interopRequireDefault(require("babel-runtime/core-js/json/stringify"));
+
 var posenet = _interopRequireWildcard(require("@tensorflow-models/posenet"));
 
 var _dat = _interopRequireDefault(require("dat.gui"));
@@ -54008,7 +53974,353 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 const videoWidth = 600;
 const videoHeight = 500;
-const stats = new _stats.default();
+const stats = new _stats.default(); // DETECT CORRECT POSTURE CODE
+
+var first = null;
+var current_pose;
+var dictionary_exercise = {
+  "leftBicepCurl": {
+    "keypoints": [{
+      "position": {
+        "y": 1.643798828125,
+        "x": 3.930267333984375
+      },
+      "part": "leftShoulder",
+      "score": 0.6475105285644531
+    }, {
+      "position": {
+        "y": 7.259033203125,
+        "x": 0.528228759765625
+      },
+      "part": "leftElbow",
+      "score": 0.9196733236312866
+    }, {
+      "position": {
+        "y": 171.65548706054688,
+        "x": 23.766448974609375
+      },
+      "part": "leftWrist",
+      "score": 0.7181068062782288
+    }],
+    "nonKeypoints": [{
+      "position": {
+        "y": 4.9232940673828125,
+        "x": 2.3838958740234375
+      },
+      "part": "nose",
+      "score": 0.9885231256484985
+    }, {
+      "position": {
+        "y": 3.2984085083007812,
+        "x": 0.9009552001953125
+      },
+      "part": "leftEye",
+      "score": 0.9641891717910767
+    }, {
+      "position": {
+        "y": 6.085788726806641,
+        "x": 3.1581573486328125
+      },
+      "part": "rightEye",
+      "score": 0.42074042558670044
+    }, {
+      "position": {
+        "y": 1.3904228210449219,
+        "x": 1.564910888671875
+      },
+      "part": "leftEar",
+      "score": 0.975070595741272
+    }, {
+      "position": {
+        "y": 0.4381103515625,
+        "x": 0.69158935546875
+      },
+      "part": "rightEar",
+      "score": 0.0389944463968277
+    }, {
+      "position": {
+        "y": 4.306732177734375,
+        "x": 0.6163330078125
+      },
+      "part": "rightShoulder",
+      "score": 0.5469438433647156
+    }, {
+      "position": {
+        "y": 153.63037109375,
+        "x": 228.32159423828125
+      },
+      "part": "rightElbow",
+      "score": 0.25836053490638733
+    }, {
+      "position": {
+        "y": 226.4029083251953,
+        "x": 300.0487823486328
+      },
+      "part": "rightWrist",
+      "score": 0.6676919460296631
+    }, {
+      "position": {
+        "y": 2.00286865234375,
+        "x": 2.19110107421875
+      },
+      "part": "leftHip",
+      "score": 0.720788836479187
+    }, {
+      "position": {
+        "y": 3.127288818359375,
+        "x": 31.20745849609375
+      },
+      "part": "rightHip",
+      "score": 0.740676999092102
+    }, {
+      "position": {
+        "y": 4.687744140625,
+        "x": 7.0390625
+      },
+      "part": "leftKnee",
+      "score": 0.4901758134365082
+    }, {
+      "position": {
+        "y": 5.490081787109375,
+        "x": 12.263519287109375
+      },
+      "part": "rightKnee",
+      "score": 0.5357720255851746
+    }, {
+      "position": {
+        "y": 65.50869750976562,
+        "x": 274.5025329589844
+      },
+      "part": "leftAnkle",
+      "score": 0.20094335079193115
+    }, {
+      "position": {
+        "y": 65.75234985351562,
+        "x": 275.61224365234375
+      },
+      "part": "rightAnkle",
+      "score": 0.2153695523738861
+    }],
+    "score": 0.5911489015116411
+  },
+  "squat": {
+    "keypoints": [{
+      "position": {
+        "y": 67.3824352403505,
+        "x": 0.20961502565284348
+      },
+      "part": "nose",
+      "score": 0.9976366758346558
+    }, {
+      "position": {
+        "y": 70.44173030086999,
+        "x": 0.08300812550776247
+      },
+      "part": "leftEye",
+      "score": 0.9938685894012451
+    }, {
+      "position": {
+        "y": 70.38356098010125,
+        "x": 0.3358842525648007
+      },
+      "part": "rightEye",
+      "score": 0.9921466708183289
+    }, {
+      "position": {
+        "y": 65.80319468403896,
+        "x": 0.31327815094147854
+      },
+      "part": "leftEar",
+      "score": 0.5727534890174866
+    }, {
+      "position": {
+        "y": 65.50867163527165,
+        "x": 0.6343584441735075
+      },
+      "part": "rightEar",
+      "score": 0.8362635374069214
+    }, {
+      "position": {
+        "y": 51.98647985360984,
+        "x": 1.4282069448524517
+      },
+      "part": "leftShoulder",
+      "score": 0.9777547717094421
+    }, {
+      "position": {
+        "y": 51.00035716148814,
+        "x": 0.1540432468892539
+      },
+      "part": "rightShoulder",
+      "score": 0.9231982827186584
+    }, {
+      "position": {
+        "y": 48.201119643966685,
+        "x": 0.25845667281945095
+      },
+      "part": "leftElbow",
+      "score": 0.893851637840271
+    }, {
+      "position": {
+        "y": 51.940029823294964,
+        "x": 1.3160722626707404
+      },
+      "part": "rightElbow",
+      "score": 0.7963579893112183
+    }, {
+      "position": {
+        "y": 58.8990803800219,
+        "x": 3.0621276538242603
+      },
+      "part": "leftWrist",
+      "score": 0.8453335762023926
+    }, {
+      "position": {
+        "y": 60.63550324713919,
+        "x": 0.6630044236975656
+      },
+      "part": "rightWrist",
+      "score": 0.545620322227478
+    }, {
+      "position": {
+        "y": 26.976186638038957,
+        "x": 1.6616839694184957
+      },
+      "part": "leftHip",
+      "score": 0.8066504597663879
+    }, {
+      "position": {
+        "y": 26.824804901615714,
+        "x": 0.9788568769739339
+      },
+      "part": "rightHip",
+      "score": 0.8861343860626221
+    }, {
+      "position": {
+        "y": 3.6289375232743293,
+        "x": 6.491027870931297
+      },
+      "part": "leftKnee",
+      "score": 0.9791066646575928
+    }, {
+      "position": {
+        "y": 3.885076409892267,
+        "x": 15.870061209650164
+      },
+      "part": "rightKnee",
+      "score": 0.961054265499115
+    }],
+    "nonKeypoints": [{
+      "position": {
+        "y": 0.3497318549874139,
+        "x": 1.1172291684635414
+      },
+      "part": "leftAnkle",
+      "score": 0.8044183254241943
+    }, {
+      "position": {
+        "y": 0.025096124602460065,
+        "x": 0.6624222065597116
+      },
+      "part": "rightAnkle",
+      "score": 0.8691182732582092
+    }]
+  }
+};
+var mapper = {
+  "nose": 0,
+  "leftEye": 1,
+  "rightEye": 2,
+  "leftEar": 3,
+  "rightEar": 4,
+  "leftShoulder": 5,
+  "rightShoulder": 6,
+  "leftElbow": 7,
+  "rightElbow": 8,
+  "leftWrist": 9,
+  "rightWrist": 10,
+  "leftHip": 11,
+  "rightHip": 12,
+  "leftKnee": 13,
+  "rightKnee": 14,
+  "leftAnkle": 15,
+  "rightAnkle": 16
+};
+
+function asliMaal(pose, exercise) {
+  current_pose = JSON.parse((0, _stringify.default)(pose));
+
+  if (first == null) {
+    first = pose;
+    console.log("Start flexing");
+    return;
+  } else {
+    var threshold = current_pose;
+
+    for (var i = 0; i < threshold["keypoints"].length; i++) {
+      var change_x = threshold["keypoints"][i]["position"]["x"] - first["keypoints"][i]["position"]["x"];
+      var change_y = threshold["keypoints"][i]["position"]["y"] - first["keypoints"][i]["position"]["y"];
+      change_x = change_x < 0 ? change_x * -1 : change_x; // threshold["keypoints"][i]["position"]["x"]=(change_x*100)/first["keypoints"][i]["position"]["x"];
+
+      threshold["keypoints"][i]["position"]["x"] = change_x;
+      change_y = change_y < 0 ? change_y * -1 : change_y; // console.log('Math.sign(change_y)',Math.sign(change_y));
+      // threshold["keypoints"][i]["position"]["y"]=(change_y*100)/first["keypoints"][i]["position"]["y"];
+
+      threshold["keypoints"][i]["position"]["y"] = change_y;
+
+      if (threshold["keypoints"][i]["part"] == "leftShoulder") {// console.log('first["keypoints"][i]["position"]["x"]: ' + first["keypoints"][i]["position"]["x"]);
+        // console.log('first["keypoints"][i]["position"]["y"]: ' + first["keypoints"][i]["position"]["y"]);
+        // console.log("change_x " + change_x);
+        // console.log("change_y " + change_y);
+      }
+    }
+
+    var len_parameter = exercise["keypoints"].length;
+    var count = 0;
+
+    for (var i = 0; i < len_parameter; i++) {
+      var map = exercise["keypoints"][i]["part"];
+      var current_change_x = threshold["keypoints"][mapper[map]]["position"]["x"];
+      var current_change_y = threshold["keypoints"][mapper[map]]["position"]["y"];
+      var threshold_change_x = exercise["keypoints"][i]["position"]["x"];
+      var threshold_change_y = exercise["keypoints"][i]["position"]["y"];
+
+      if (exercise["keypoints"][i]["part"] == "leftShoulder") {// console.log(threshold_change_x);
+        // console.log(threshold_change_y);
+      }
+
+      if (current_change_x <= threshold_change_x + 10 && current_change_y <= threshold_change_y + 10) {
+        if (Math.abs(current_change_y - threshold_change_y) <= 10) {
+          count++;
+          console.log(count);
+        }
+
+        console.log('ALL GOOD');
+      } else {
+        console.log("You are not doing this right");
+      }
+    } // for (var i=0; i<exercise["nonKeypoints"].length; i++){
+    //     var threshold_change_x = exercise["nonKeypoints"][i]["position"]["x"];
+    //     var threshold_change_y = exercise["nonKeypoints"][i]["position"]["y"];
+    //     var current_change_x = threshold["keypoints"][mapper[map]]["position"]["x"];
+    //     var current_change_y = threshold["keypoints"][mapper[map]]["position"]["y"];
+    //     if( current_change_x > threshold_change_x + 10 && current_change_y > threshold_change_y + 10 ){
+    //         console.log("Please Restart");
+    //
+    //         first = null;
+    //         return;
+    //     }
+    // }
+
+
+    if (count == len_parameter) {
+      console.log("Rep done");
+      first = current_pose;
+      return;
+    } else {// console.log("Go the distance");
+    }
+  }
+}
 
 function isAndroid() {
   return /Android/i.test(navigator.userAgent);
@@ -54170,6 +54482,8 @@ function setupFPS() {
  */
 
 
+var ctr = 0;
+
 function detectPoseInRealTime(video, net) {
   const canvas = document.getElementById('output');
   const ctx = canvas.getContext('2d'); // since images are being fed from a webcam
@@ -54197,12 +54511,13 @@ function detectPoseInRealTime(video, net) {
     let poses = [];
     let minPoseConfidence;
     let minPartConfidence;
+    var pose;
 
     switch (guiState.algorithm) {
       case 'single-pose':
-        const pose = await guiState.net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride);
-        poses.push(pose);
-        console.log(pose);
+        pose = await guiState.net.estimateSinglePose(video, imageScaleFactor, flipHorizontal, outputStride);
+        poses.push(pose); // console.log(pose);
+
         minPoseConfidence = +guiState.singlePoseDetection.minPoseConfidence;
         minPartConfidence = +guiState.singlePoseDetection.minPartConfidence;
         break;
@@ -54237,8 +54552,14 @@ function detectPoseInRealTime(video, net) {
           (0, _demo_util.drawKeypoints)(keypoints, minPartConfidence, ctx);
         }
 
-        if (guiState.output.showSkeleton) {
-          (0, _demo_util.drawSkeleton)(keypoints, minPartConfidence, ctx);
+        if (guiState.output.showSkeleton && ctr <= 20) {
+          ctr++;
+          console.log(ctr);
+          (0, _demo_util.drawSkeleton)(keypoints, minPartConfidence, ctx, ctr);
+        } else if (guiState.output.showSkeleton) {
+          // console.log(pose);
+          asliMaal(pose, dictionary_exercise["leftBicepCurl"]);
+          (0, _demo_util.drawSkeleton)(keypoints, minPartConfidence, ctx, ctr);
         }
 
         if (guiState.output.showBoundingBox) {
@@ -54284,5 +54605,5 @@ async function bindPage() {
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia; // kick off the demo
 
 bindPage();
-},{"babel-runtime/core-js/promise":"node_modules/babel-runtime/core-js/promise.js","@tensorflow-models/posenet":"node_modules/@tensorflow-models/posenet/dist/posenet.esm.js","dat.gui":"node_modules/dat.gui/build/dat.gui.module.js","stats.js":"node_modules/stats.js/build/stats.min.js","./demo_util":"demo_util.js"}]},{},["camera.js"], null)
+},{"babel-runtime/core-js/promise":"node_modules/babel-runtime/core-js/promise.js","babel-runtime/core-js/json/stringify":"node_modules/babel-runtime/core-js/json/stringify.js","@tensorflow-models/posenet":"node_modules/@tensorflow-models/posenet/dist/posenet.esm.js","dat.gui":"node_modules/dat.gui/build/dat.gui.module.js","stats.js":"node_modules/stats.js/build/stats.min.js","./demo_util":"demo_util.js"}]},{},["camera.js"], null)
 //# sourceMappingURL=/camera.283d5d54.map

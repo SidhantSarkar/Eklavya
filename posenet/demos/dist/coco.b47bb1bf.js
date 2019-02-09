@@ -104,46 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"node_modules/core-js/library/modules/es6.object.to-string.js":[function(require,module,exports) {
-
-},{}],"node_modules/core-js/library/modules/_to-integer.js":[function(require,module,exports) {
-// 7.1.4 ToInteger
-var ceil = Math.ceil;
-var floor = Math.floor;
-module.exports = function (it) {
-  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-};
-
-},{}],"node_modules/core-js/library/modules/_defined.js":[function(require,module,exports) {
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function (it) {
-  if (it == undefined) throw TypeError("Can't call method on  " + it);
-  return it;
-};
-
-},{}],"node_modules/core-js/library/modules/_string-at.js":[function(require,module,exports) {
-var toInteger = require('./_to-integer');
-var defined = require('./_defined');
-// true  -> String#at
-// false -> String#codePointAt
-module.exports = function (TO_STRING) {
-  return function (that, pos) {
-    var s = String(defined(that));
-    var i = toInteger(pos);
-    var l = s.length;
-    var a, b;
-    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
-    a = s.charCodeAt(i);
-    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-      ? TO_STRING ? s.charAt(i) : a
-      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-  };
-};
-
-},{"./_to-integer":"node_modules/core-js/library/modules/_to-integer.js","./_defined":"node_modules/core-js/library/modules/_defined.js"}],"node_modules/core-js/library/modules/_library.js":[function(require,module,exports) {
-module.exports = true;
-
-},{}],"node_modules/core-js/library/modules/_global.js":[function(require,module,exports) {
+})({"node_modules/core-js/library/modules/_global.js":[function(require,module,exports) {
 
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
@@ -348,7 +309,65 @@ $export.U = 64;  // safe
 $export.R = 128; // real proto method for `library`
 module.exports = $export;
 
-},{"./_global":"node_modules/core-js/library/modules/_global.js","./_core":"node_modules/core-js/library/modules/_core.js","./_ctx":"node_modules/core-js/library/modules/_ctx.js","./_hide":"node_modules/core-js/library/modules/_hide.js","./_has":"node_modules/core-js/library/modules/_has.js"}],"node_modules/core-js/library/modules/_redefine.js":[function(require,module,exports) {
+},{"./_global":"node_modules/core-js/library/modules/_global.js","./_core":"node_modules/core-js/library/modules/_core.js","./_ctx":"node_modules/core-js/library/modules/_ctx.js","./_hide":"node_modules/core-js/library/modules/_hide.js","./_has":"node_modules/core-js/library/modules/_has.js"}],"node_modules/core-js/library/modules/_math-sign.js":[function(require,module,exports) {
+// 20.2.2.28 Math.sign(x)
+module.exports = Math.sign || function sign(x) {
+  // eslint-disable-next-line no-self-compare
+  return (x = +x) == 0 || x != x ? x : x < 0 ? -1 : 1;
+};
+
+},{}],"node_modules/core-js/library/modules/es6.math.sign.js":[function(require,module,exports) {
+// 20.2.2.28 Math.sign(x)
+var $export = require('./_export');
+
+$export($export.S, 'Math', { sign: require('./_math-sign') });
+
+},{"./_export":"node_modules/core-js/library/modules/_export.js","./_math-sign":"node_modules/core-js/library/modules/_math-sign.js"}],"node_modules/core-js/library/fn/math/sign.js":[function(require,module,exports) {
+require('../../modules/es6.math.sign');
+module.exports = require('../../modules/_core').Math.sign;
+
+},{"../../modules/es6.math.sign":"node_modules/core-js/library/modules/es6.math.sign.js","../../modules/_core":"node_modules/core-js/library/modules/_core.js"}],"node_modules/babel-runtime/core-js/math/sign.js":[function(require,module,exports) {
+module.exports = { "default": require("core-js/library/fn/math/sign"), __esModule: true };
+},{"core-js/library/fn/math/sign":"node_modules/core-js/library/fn/math/sign.js"}],"node_modules/core-js/library/modules/es6.object.to-string.js":[function(require,module,exports) {
+
+},{}],"node_modules/core-js/library/modules/_to-integer.js":[function(require,module,exports) {
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+},{}],"node_modules/core-js/library/modules/_defined.js":[function(require,module,exports) {
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+},{}],"node_modules/core-js/library/modules/_string-at.js":[function(require,module,exports) {
+var toInteger = require('./_to-integer');
+var defined = require('./_defined');
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function (TO_STRING) {
+  return function (that, pos) {
+    var s = String(defined(that));
+    var i = toInteger(pos);
+    var l = s.length;
+    var a, b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+},{"./_to-integer":"node_modules/core-js/library/modules/_to-integer.js","./_defined":"node_modules/core-js/library/modules/_defined.js"}],"node_modules/core-js/library/modules/_library.js":[function(require,module,exports) {
+module.exports = true;
+
+},{}],"node_modules/core-js/library/modules/_redefine.js":[function(require,module,exports) {
 module.exports = require('./_hide');
 
 },{"./_hide":"node_modules/core-js/library/modules/_hide.js"}],"node_modules/core-js/library/modules/_iterators.js":[function(require,module,exports) {
@@ -4160,10 +4179,10 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 
-},{"process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/internal/streams/stream-browser.js":[function(require,module,exports) {
-module.exports = require('events').EventEmitter;
+},{"process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/internal/streams/stream.js":[function(require,module,exports) {
+module.exports = require('stream');
 
-},{"events":"node_modules/events/events.js"}],"node_modules/core-util-is/lib/util.js":[function(require,module,exports) {
+},{"stream":"node_modules/stream-browserify/index.js"}],"node_modules/core-util-is/lib/util.js":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5190,7 +5209,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-},{"process-nextick-args":"node_modules/process-nextick-args/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util-deprecate":"node_modules/util-deprecate/browser.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_duplex.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util-deprecate":"node_modules/util-deprecate/browser.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream.js","safe-buffer":"node_modules/safe-buffer/index.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_duplex.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6643,7 +6662,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-},{"process-nextick-args":"node_modules/process-nextick-args/index.js","isarray":"node_modules/isarray/index.js","events":"node_modules/events/events.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util":"node_modules/core-js/library/modules/es6.object.to-string.js","./internal/streams/BufferList":"node_modules/readable-stream/lib/internal/streams/BufferList.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","string_decoder/":"node_modules/string_decoder/lib/string_decoder.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_transform.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js","isarray":"node_modules/isarray/index.js","events":"node_modules/events/events.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream.js","safe-buffer":"node_modules/safe-buffer/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util":"node_modules/core-js/library/modules/es6.object.to-string.js","./internal/streams/BufferList":"node_modules/readable-stream/lib/internal/streams/BufferList.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","string_decoder/":"node_modules/string_decoder/lib/string_decoder.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_transform.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -8748,21 +8767,8 @@ if (process.browser) {
 }
 
 module.exports = defaultEncoding;
-},{"process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/lib/sync-browser.js":[function(require,module,exports) {
+},{"process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/lib/sync.js":[function(require,module,exports) {
 
-var md5 = require('create-hash/md5');
-
-var rmd160 = require('ripemd160');
-
-var sha = require('sha.js');
-
-var checkParameters = require('./precondition');
-
-var defaultEncoding = require('./default-encoding');
-
-var Buffer = require('safe-buffer').Buffer;
-
-var ZEROS = Buffer.alloc(128);
 var sizes = {
   md5: 16,
   sha1: 20,
@@ -8774,58 +8780,19 @@ var sizes = {
   ripemd160: 20
 };
 
-function Hmac(alg, key, saltLen) {
-  var hash = getDigest(alg);
-  var blocksize = alg === 'sha512' || alg === 'sha384' ? 128 : 64;
+var createHmac = require('create-hmac');
 
-  if (key.length > blocksize) {
-    key = hash(key);
-  } else if (key.length < blocksize) {
-    key = Buffer.concat([key, ZEROS], blocksize);
-  }
+var checkParameters = require('../lib/precondition');
 
-  var ipad = Buffer.allocUnsafe(blocksize + sizes[alg]);
-  var opad = Buffer.allocUnsafe(blocksize + sizes[alg]);
+var defaultEncoding = require('../lib/default-encoding');
 
-  for (var i = 0; i < blocksize; i++) {
-    ipad[i] = key[i] ^ 0x36;
-    opad[i] = key[i] ^ 0x5C;
-  }
-
-  var ipad1 = Buffer.allocUnsafe(blocksize + saltLen + 4);
-  ipad.copy(ipad1, 0, 0, blocksize);
-  this.ipad1 = ipad1;
-  this.ipad2 = ipad;
-  this.opad = opad;
-  this.alg = alg;
-  this.blocksize = blocksize;
-  this.hash = hash;
-  this.size = sizes[alg];
-}
-
-Hmac.prototype.run = function (data, ipad) {
-  data.copy(ipad, this.blocksize);
-  var h = this.hash(ipad);
-  h.copy(this.opad, this.blocksize);
-  return this.hash(this.opad);
-};
-
-function getDigest(alg) {
-  function shaFunc(data) {
-    return sha(alg).update(data).digest();
-  }
-
-  if (alg === 'rmd160' || alg === 'ripemd160') return rmd160;
-  if (alg === 'md5') return md5;
-  return shaFunc;
-}
+var Buffer = require('safe-buffer').Buffer;
 
 function pbkdf2(password, salt, iterations, keylen, digest) {
   checkParameters(password, salt, iterations, keylen);
   if (!Buffer.isBuffer(password)) password = Buffer.from(password, defaultEncoding);
   if (!Buffer.isBuffer(salt)) salt = Buffer.from(salt, defaultEncoding);
   digest = digest || 'sha1';
-  var hmac = new Hmac(digest, password, salt.length);
   var DK = Buffer.allocUnsafe(keylen);
   var block1 = Buffer.allocUnsafe(salt.length + 4);
   salt.copy(block1, 0, 0, salt.length);
@@ -8835,11 +8802,11 @@ function pbkdf2(password, salt, iterations, keylen, digest) {
 
   for (var i = 1; i <= l; i++) {
     block1.writeUInt32BE(i, salt.length);
-    var T = hmac.run(block1, hmac.ipad1);
+    var T = createHmac(digest, password).update(block1).digest();
     var U = T;
 
     for (var j = 1; j < iterations; j++) {
-      U = hmac.run(U, hmac.ipad2);
+      U = createHmac(digest, password).update(U).digest();
 
       for (var k = 0; k < hLen; k++) T[k] ^= U[k];
     }
@@ -8852,7 +8819,7 @@ function pbkdf2(password, salt, iterations, keylen, digest) {
 }
 
 module.exports = pbkdf2;
-},{"create-hash/md5":"node_modules/create-hash/md5.js","ripemd160":"node_modules/ripemd160/index.js","sha.js":"node_modules/sha.js/index.js","./precondition":"node_modules/pbkdf2/lib/precondition.js","./default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","safe-buffer":"node_modules/safe-buffer/index.js"}],"node_modules/pbkdf2/lib/async.js":[function(require,module,exports) {
+},{"create-hmac":"node_modules/create-hmac/browser.js","../lib/precondition":"node_modules/pbkdf2/lib/precondition.js","../lib/default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","safe-buffer":"node_modules/safe-buffer/index.js"}],"node_modules/pbkdf2/lib/async.js":[function(require,module,exports) {
 
 var global = arguments[3];
 var process = require("process");
@@ -8963,10 +8930,10 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
     return sync(password, salt, iterations, keylen, digest);
   }), callback);
 };
-},{"./precondition":"node_modules/pbkdf2/lib/precondition.js","./default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","./sync":"node_modules/pbkdf2/lib/sync-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/browser.js":[function(require,module,exports) {
+},{"./precondition":"node_modules/pbkdf2/lib/precondition.js","./default-encoding":"node_modules/pbkdf2/lib/default-encoding.js","./sync":"node_modules/pbkdf2/lib/sync.js","safe-buffer":"node_modules/safe-buffer/index.js","process":"node_modules/process/browser.js"}],"node_modules/pbkdf2/browser.js":[function(require,module,exports) {
 exports.pbkdf2 = require('./lib/async');
 exports.pbkdf2Sync = require('./lib/sync');
-},{"./lib/async":"node_modules/pbkdf2/lib/async.js","./lib/sync":"node_modules/pbkdf2/lib/sync-browser.js"}],"node_modules/des.js/lib/des/utils.js":[function(require,module,exports) {
+},{"./lib/async":"node_modules/pbkdf2/lib/async.js","./lib/sync":"node_modules/pbkdf2/lib/sync.js"}],"node_modules/des.js/lib/des/utils.js":[function(require,module,exports) {
 'use strict';
 
 exports.readUInt32BE = function readUInt32BE(bytes, off) {
@@ -53800,9 +53767,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
  * limitations under the License.
  * =============================================================================
  */
-const color = 'aqua';
+var color = 'aqua';
 const boundingBoxColor = 'red';
-const lineWidth = 2;
+const lineWidth = 10;
 
 function toTuple({
   y,
@@ -53835,8 +53802,15 @@ function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
  */
 
 
-function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+function drawSkeleton(keypoints, minConfidence, ctx, ctr, scale = 1) {
   const adjacentKeyPoints = posenet.getAdjacentKeyPoints(keypoints, minConfidence);
+
+  if (ctr <= 20) {
+    color = 'red'; // console.log("red");
+  } else {
+    color = 'aqua'; // console.log('aqua');
+  }
+
   adjacentKeyPoints.forEach(keypoints => {
     drawSegment(toTuple(keypoints[0].position), toTuple(keypoints[1].position), color, scale, ctx);
   });
@@ -53915,7 +53889,7 @@ function renderImageToCanvas(image, size, canvas) {
 
 function drawHeatMapValues(heatMapValues, outputStride, canvas) {
   const ctx = canvas.getContext('2d');
-  const radius = 5;
+  const radius = 50;
   const scaledValues = heatMapValues.mul(tf.scalar(outputStride, 'int32'));
   drawPoints(ctx, scaledValues, radius, color);
 }
@@ -53934,8 +53908,8 @@ function drawPoints(ctx, points, radius, color) {
 
     if (pointX !== 0 && pointY !== 0) {
       ctx.beginPath();
-      ctx.arc(pointX, pointY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = color;
+      ctx.arc(pointX, pointY, 300, 0, 2 * Math.PI);
+      ctx.fillStyle = "#FF0000";
       ctx.fill();
     }
   }
@@ -53967,6 +53941,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.bindPage = bindPage;
+
+var _sign = _interopRequireDefault(require("babel-runtime/core-js/math/sign"));
 
 var _promise = _interopRequireDefault(require("babel-runtime/core-js/promise"));
 
@@ -54361,5 +54337,18 @@ async function bindPage() {
 }
 
 bindPage();
-},{"babel-runtime/core-js/promise":"node_modules/babel-runtime/core-js/promise.js","@tensorflow-models/posenet":"node_modules/@tensorflow-models/posenet/dist/posenet.esm.js","@tensorflow/tfjs":"node_modules/@tensorflow/tfjs/dist/tf.esm.js","dat.gui":"node_modules/dat.gui/build/dat.gui.module.js","./demo_util":"demo_util.js"}]},{},["coco.js"], null)
+
+function asliMaal(pose1, pose2) {
+  var threshold = pose2;
+
+  for (var i = 0; i < threshold["keypoints"].length; i++) {
+    var change_x = threshold["keypoints"][i]["position"]["x"] - pose1["keypoints"][i]["position"]["x"];
+    var change_y = threshold["keypoints"][i]["position"]["y"] - pose1["keypoints"][i]["position"]["y"];
+    threshold["keypoints"][i]["position"]["x"] = (0, _sign.default)(change_x) * change_x;
+    threshold["keypoints"][i]["position"]["y"] = _Math$sign(change_y) * change_y;
+  }
+
+  console.log(threshold);
+}
+},{"babel-runtime/core-js/math/sign":"node_modules/babel-runtime/core-js/math/sign.js","babel-runtime/core-js/promise":"node_modules/babel-runtime/core-js/promise.js","@tensorflow-models/posenet":"node_modules/@tensorflow-models/posenet/dist/posenet.esm.js","@tensorflow/tfjs":"node_modules/@tensorflow/tfjs/dist/tf.esm.js","dat.gui":"node_modules/dat.gui/build/dat.gui.module.js","./demo_util":"demo_util.js"}]},{},["coco.js"], null)
 //# sourceMappingURL=/coco.b47bb1bf.map

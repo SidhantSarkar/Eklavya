@@ -17,9 +17,9 @@
 import * as posenet from '@tensorflow-models/posenet';
 import * as tf from '@tensorflow/tfjs';
 
-const color = 'aqua';
+var color = 'aqua';
 const boundingBoxColor = 'red';
-const lineWidth = 2;
+const lineWidth = 10;
 
 function toTuple({y, x}) {
   return [y, x];
@@ -47,10 +47,16 @@ export function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
 /**
  * Draws a pose skeleton by looking up all adjacent keypoints/joints
  */
-export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+export function drawSkeleton(keypoints, minConfidence, ctx,ctr, scale = 1) {
   const adjacentKeyPoints =
       posenet.getAdjacentKeyPoints(keypoints, minConfidence);
-
+      if(ctr <= 20){
+          color='red';
+          // console.log("red");
+      }else{
+          color='aqua';
+          // console.log('aqua');
+      }
   adjacentKeyPoints.forEach((keypoints) => {
     drawSegment(
         toTuple(keypoints[0].position), toTuple(keypoints[1].position), color,
@@ -130,7 +136,7 @@ export function renderImageToCanvas(image, size, canvas) {
  */
 export function drawHeatMapValues(heatMapValues, outputStride, canvas) {
   const ctx = canvas.getContext('2d');
-  const radius = 5;
+  const radius = 50;
   const scaledValues = heatMapValues.mul(tf.scalar(outputStride, 'int32'));
 
   drawPoints(ctx, scaledValues, radius, color);
@@ -149,8 +155,8 @@ function drawPoints(ctx, points, radius, color) {
 
     if (pointX !== 0 && pointY !== 0) {
       ctx.beginPath();
-      ctx.arc(pointX, pointY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = color;
+      ctx.arc(pointX, pointY, 300, 0, 2 * Math.PI);
+      ctx.fillStyle = "#FF0000";
       ctx.fill();
     }
   }

@@ -35,7 +35,7 @@ const images = [
   'hftEN49.jpg',
   'ZXO6qXt.jpg',
   'zrnSSeD.jpg',
-  'BNR8RBZ.jpg',  
+  'BNR8RBZ.jpg',
 ];
 
 const {partIds, poseChain} = posenet;
@@ -450,3 +450,14 @@ export async function bindPage() {
 }
 
 bindPage();
+
+function asliMaal (pose1, pose2){
+    var threshold = pose2;
+    for (var i=0; i<threshold["keypoints"].length; i++){
+        var change_x = threshold["keypoints"][i]["position"]["x"]-pose1["keypoints"][i]["position"]["x"];
+        var change_y = threshold["keypoints"][i]["position"]["y"]-pose1["keypoints"][i]["position"]["y"];
+        threshold["keypoints"][i]["position"]["x"]=((Math.sign(change_x))*change_x);
+        threshold["keypoints"][i]["position"]["y"]=((Math.sign(change_y))*change_y);
+    }
+    console.log(threshold)
+}

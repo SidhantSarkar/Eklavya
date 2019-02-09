@@ -25,7 +25,7 @@
  */
 
 .product-device {
-  /*position: absolute;
+  position: absolute;
   right: 10%;
   bottom: -30%;
   width: 300px;
@@ -33,7 +33,7 @@
   background-color: #333;
   border-radius: 21px;
   -webkit-transform: rotate(30deg);
-  transform: rotate(30deg);*/
+  transform: rotate(30deg);
   /* background-image: url("biceps.jpg"); */
 }
 

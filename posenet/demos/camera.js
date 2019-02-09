@@ -384,9 +384,15 @@ function asliMaal (pose, exercise){
                     console.log(count);
                 }
                 console.log('ALL GOOD');
+                var box=document.getElementById('status')
+                box.innerText='OK'
+                box.style.backgroundColor='#28a745';
             }
             else{
                 console.log("You are not doing this right");
+                var box=document.getElementById('status')
+                box.innerText='Incorrect form';
+                box.style.backgroundColor='#dc3545';
             }
         }
 

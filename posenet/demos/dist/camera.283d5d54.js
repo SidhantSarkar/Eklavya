@@ -54348,8 +54348,14 @@ function asliMaal(pose, exercise) {
         }
 
         console.log('ALL GOOD');
+        var box = document.getElementById('status');
+        box.innerText = 'OK';
+        box.style.backgroundColor = '#28a745';
       } else {
         console.log("You are not doing this right");
+        var box = document.getElementById('status');
+        box.innerText = 'Incorrect form';
+        box.style.backgroundColor = '#dc3545';
       }
     } // for (var i=0; i<exercise["nonKeypoints"].length; i++){
     //     var threshold_change_x = exercise["nonKeypoints"][i]["position"]["x"];
